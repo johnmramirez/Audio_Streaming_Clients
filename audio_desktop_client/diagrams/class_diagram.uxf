@@ -1,122 +1,315 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
-  <zoom_level>10</zoom_level>
+  <zoom_level>11</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>800</x>
-      <y>40</y>
-      <w>100</w>
-      <h>90</h>
+      <x>902</x>
+      <y>352</y>
+      <w>110</w>
+      <h>77</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;Interface&gt;&gt;
-Audio
+    <panel_attributes>WAV
 --
-+play();
-+pause();</panel_attributes>
++play():void
++stop():void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>800</x>
-      <y>200</y>
-      <w>100</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>MP3
---
-+title:String
-+length:String
-+artist:String
-+album:String</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>840</x>
-      <y>120</y>
-      <w>30</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>460</x>
-      <y>180</y>
-      <w>230</w>
-      <h>140</h>
+      <x>407</x>
+      <y>308</y>
+      <w>319</w>
+      <h>220</h>
     </coordinates>
     <panel_attributes>Controller
 --
--httpClient:HttpClient
+-audioPlayerView:AudioPlayerView
+-audioPlayer:AudioPlayer
+-audioRetriever:AudioRetriever
+--
++setSong(String songName):void
++playSong():void
++stopSong():void
++songSelected():boolean
++printSelectedSongDetails():void
++printAvailableSongs(String directory):void
++printHelpDetails(String... details):void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>66</x>
+      <y>352</y>
+      <w>264</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>AudioPlayerView
+--
++printToConsole(String output):void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>440</x>
+      <y>88</y>
+      <w>198</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>AudioPlayer
+--
+-Audio:currentSong
 --
 +playSong():void
-+pauseSong():void
-+selectSong(songId:String):void
-+refreshPlaylist():void</panel_attributes>
++stopSong():void
++setSong(song:Audio):void
++getSong():Audio
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>517</x>
+      <y>209</y>
+      <w>33</w>
+      <h>121</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>319</x>
+      <y>363</y>
+      <w>110</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;
+</panel_attributes>
+    <additional_attributes>80.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>429</x>
+      <y>583</y>
+      <w>385</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>AudioRetriever
+--
+-fileHandler:FileHandler
+-audioParser:AudioParser
+-availableSongs:Map&lt;String,String&gt;
+--
++getSong(String id):Audio
++getAvailableSongs(String directory):ArrayList&lt;String&gt;</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>200</x>
-      <y>200</y>
-      <w>130</w>
-      <h>90</h>
+      <x>803</x>
+      <y>0</y>
+      <w>286</w>
+      <h>220</h>
     </coordinates>
-    <panel_attributes>AudioPlayerView</panel_attributes>
+    <panel_attributes>/Audio/
+--
+-title:String
+-length:String
+-artist:String
+-album:String
+-id:String
+#audioInputStream:AudioInputStream
+#sourceDataLine:SourceDataLine
+
+--
++play():void
++stop():void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>946</x>
+      <y>209</y>
+      <w>33</w>
+      <h>165</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>517</x>
+      <y>517</y>
+      <w>33</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>627</x>
+      <y>110</y>
+      <w>198</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;
+</panel_attributes>
+    <additional_attributes>10.0;20.0;160.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>803</x>
+      <y>418</y>
+      <w>176</w>
+      <h>209</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;</panel_attributes>
+    <additional_attributes>10.0;170.0;140.0;170.0;140.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>473</x>
+      <y>759</y>
+      <w>286</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>FileHandler
+--
++getFile(String filepath):InputStream
++getFilePaths(String directory):ArrayList</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>605</x>
+      <y>704</y>
+      <w>33</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>66</x>
+      <y>583</y>
+      <w>286</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>AudioParser
+--
++getMetaData(InputStream file):String[]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>341</x>
+      <y>605</y>
+      <w>110</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>77</x>
+      <y>770</y>
+      <w>110</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;External&gt;&gt;
+TikaException</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>520</x>
-      <y>40</y>
-      <w>100</w>
-      <h>30</h>
+      <x>275</x>
+      <y>770</y>
+      <w>110</w>
+      <h>44</h>
     </coordinates>
-    <panel_attributes>AudioPlayer</panel_attributes>
+    <panel_attributes>&lt;&lt;External&gt;&gt;
+MetaData</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>77</x>
+      <y>825</y>
+      <w>154</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;External&gt;&gt;
+AutoDetectParser</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>77</x>
+      <y>880</y>
+      <w>165</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;External&gt;&gt;
+BodyContentHandler</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>275</x>
+      <y>825</y>
+      <w>110</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;External&gt;&gt;
+SAXException</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>560</x>
-      <y>60</y>
-      <w>60</w>
-      <h>140</h>
+      <x>220</x>
+      <y>627</y>
+      <w>33</w>
+      <h>143</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-
-Uses</panel_attributes>
-    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
+    <panel_attributes>lt=.&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
   </element>
   <element>
-    <id>Relation</id>
+    <id>UMLPackage</id>
     <coordinates>
-      <x>680</x>
-      <y>230</y>
-      <w>140</w>
-      <h>40</h>
+      <x>66</x>
+      <y>715</y>
+      <w>330</w>
+      <h>231</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-
-Uses</panel_attributes>
-    <additional_attributes>120.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>320</x>
-      <y>230</y>
-      <w>160</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-Uses</panel_attributes>
-    <additional_attributes>10.0;20.0;140.0;20.0</additional_attributes>
+    <panel_attributes>&lt;&lt;External&gt;&gt;
+Apache Tika</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

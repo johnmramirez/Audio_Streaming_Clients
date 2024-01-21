@@ -1,41 +1,71 @@
 package controller;
+
 import java.util.ArrayList;
 
 import model.Audio;
+import model.AudioPlayer;
+import model.AudioRetriever;
 import view.AudioPlayerView;
 
 public class Controller {
+
+    private final String ERROR_MSG = "An error has occurred.";
+
     private AudioPlayerView audioPlayerView;
-    private Audio song = null;
-    private ArrayList<Audio> songs = null;
+    private AudioPlayer audioPlayer;
+    private AudioRetriever audioRetriever;
 
-    public Controller(AudioPlayerView audioPlayerView){
-        this.audioPlayerView = audioPlayerView;
+    public Controller(){
+        this.audioPlayerView = new AudioPlayerView();
+        this.audioPlayer = new AudioPlayer();
+        this.audioRetriever = new AudioRetriever();
     }
 
-    public void setSong(Audio song){
-        this.song = song;
+    public void setSong(String songName){
+        try {
+            Audio song = this.audioRetriever.getSong(songName);
+            this.audioPlayer.setSong(song);
+        } catch (Exception e){
+            this.audioPlayerView.printToConsole(ERROR_MSG);
+            e.printStackTrace();
+        }
     }
 
-    public Audio getSong(){
-        return this.song;
+    public void playSong(){
+        try {
+            this.audioPlayer.playSong();
+        } catch (Exception e) {
+            this.audioPlayerView.printToConsole(ERROR_MSG);
+            e.printStackTrace();
+        }
     }
 
-    public Audio downloadSong(String songId){
-        return null;
+    public void stopSong(){
+        try {
+            this.audioPlayer.stopSong();
+        } catch (Exception e){
+            this.audioPlayerView.printToConsole(ERROR_MSG);
+            e.printStackTrace();
+        }
     }
 
-    public ArrayList<Audio> downloadSongs(){
-        return null;
+    public boolean songSelected(){
+        return (this.audioPlayer.getSong() != null);
     }
 
-    //Audio object should be responsible for returning toString for printing
     public void printSelectedSongDetails(){
-        this.audioPlayerView.printSongDetails(this.song);
+        this.audioPlayerView.printToConsole(this.audioPlayer.getSong().toString());
     }
 
-    public void printAvailableSongs(){
-        this.audioPlayerView.printAvailableSongs(this.songs);
+    public void printAvailableSongs(String directory){
+        ArrayList<String> songs = this.audioRetriever.getAvailableSongs(directory);
+        for (String song : songs) {
+            this.audioPlayerView.printToConsole(song);
+        }
+    }
+
+    public void printHelpDetails(String... helpDetails){
+        this.audioPlayerView.printToConsole(helpDetails);
     }
 
 }
