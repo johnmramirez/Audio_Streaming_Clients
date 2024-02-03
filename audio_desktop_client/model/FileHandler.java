@@ -7,8 +7,13 @@ import java.util.ArrayList;
 
 public class FileHandler {
     
-    public FileInputStream getFile(String filepath) throws FileNotFoundException{
-        return new FileInputStream(new File(filepath));
+    public FileInputStream getFile(String filepath) throws FileNotFoundException, NullPointerException {
+        if(filepath.isBlank()){
+            throw new NullPointerException("Filepath is an empty string or only contains space characters.");
+        }
+        File file = new File(filepath);
+        FileInputStream fileInputStream = new FileInputStream(file);
+        return fileInputStream;
     }
 
     public ArrayList<String> getFilePaths(String directory){
